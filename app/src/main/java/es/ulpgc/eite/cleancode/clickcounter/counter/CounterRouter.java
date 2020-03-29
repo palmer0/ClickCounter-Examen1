@@ -6,6 +6,7 @@ import android.content.Intent;
 import es.ulpgc.eite.cleancode.clickcounter.app.AppMediator;
 import es.ulpgc.eite.cleancode.clickcounter.app.ClicksToCounterState;
 import es.ulpgc.eite.cleancode.clickcounter.app.CounterToClicksState;
+import es.ulpgc.eite.cleancode.clickcounter.clicks.ClicksActivity;
 
 public class CounterRouter implements CounterContract.Router {
 
@@ -20,7 +21,7 @@ public class CounterRouter implements CounterContract.Router {
   @Override
   public void navigateToNextScreen() {
     Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, CounterActivity.class);
+    Intent intent = new Intent(context, ClicksActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
