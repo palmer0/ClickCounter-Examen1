@@ -1,0 +1,36 @@
+package es.ulpgc.eite.cleancode.clickcounter.counter;
+
+import android.content.Context;
+import android.content.Intent;
+
+import es.ulpgc.eite.cleancode.clickcounter.app.AppMediator;
+import es.ulpgc.eite.cleancode.clickcounter.app.ClicksToCounterState;
+import es.ulpgc.eite.cleancode.clickcounter.app.CounterToClicksState;
+
+public class CounterRouter implements CounterContract.Router {
+
+  public static String TAG = CounterRouter.class.getSimpleName();
+
+  private AppMediator mediator;
+
+  public CounterRouter(AppMediator mediator) {
+    this.mediator = mediator;
+  }
+
+  @Override
+  public void navigateToNextScreen() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, CounterActivity.class);
+    context.startActivity(intent);
+  }
+
+  @Override
+  public void passStateToNextScreen(CounterToClicksState state) {
+    mediator.setCounterNextScreenState(state);
+  }
+
+  @Override
+  public ClicksToCounterState getStateFromNextScreen() {
+    return mediator.getCounterNextScreenState();
+  }
+}
