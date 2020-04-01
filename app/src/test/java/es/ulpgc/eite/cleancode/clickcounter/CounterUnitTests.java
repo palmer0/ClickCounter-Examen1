@@ -9,7 +9,7 @@ import org.robolectric.RobolectricTestRunner;
 //@RunWith(AndroidJUnit4ClassRunner.class)
 @RunWith(RobolectricTestRunner.class)
 @LargeTest
-public class CounterUnitTests {
+public class CounterUnitTests {  // 12 tests
 
   CounterUnitRobot robot = new CounterUnitRobot();
 
