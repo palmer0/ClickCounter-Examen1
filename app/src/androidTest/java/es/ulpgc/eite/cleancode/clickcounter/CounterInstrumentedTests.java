@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4ClassRunner.class)
 @LargeTest
-public class CounterInstrumentedTests {
+public class CounterInstrumentedTests { // 12 tests
 
   CounterInstrumentedRobot robot = new CounterInstrumentedRobot();
 
