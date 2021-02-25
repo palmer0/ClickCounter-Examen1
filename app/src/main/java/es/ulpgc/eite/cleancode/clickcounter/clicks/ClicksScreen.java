@@ -16,14 +16,11 @@ public class ClicksScreen {
 
     String data = context.get().getString(R.string.app_name);
 
-    AppMediator mediator = (AppMediator) context.get().getApplication();
-    ClicksState state = mediator.getClicksState();
+    AppMediator mediator = AppMediator.getInstance();
 
-    ClicksContract.Router router = new ClicksRouter(mediator);
-    ClicksContract.Presenter presenter = new ClicksPresenter(state);
+    ClicksContract.Presenter presenter = new ClicksPresenter(mediator);
     ClicksContract.Model model = new ClicksModel(data);
     presenter.injectModel(model);
-    presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     view.injectPresenter(presenter);

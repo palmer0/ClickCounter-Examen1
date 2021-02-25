@@ -1,11 +1,9 @@
 package es.ulpgc.eite.cleancode.clickcounter.app;
 
-import android.app.Application;
-
 import es.ulpgc.eite.cleancode.clickcounter.clicks.ClicksState;
 import es.ulpgc.eite.cleancode.clickcounter.counter.CounterState;
 
-public class AppMediator extends Application {
+public class AppMediator {
 
   private CounterState counterState;
   private ClicksState clicksState;
@@ -13,13 +11,27 @@ public class AppMediator extends Application {
   private CounterToClicksState counterToClicksState;
   private ClicksToCounterState clicksToCounterState;
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
+  private static AppMediator INSTANCE;
 
-    counterState = new CounterState();
-    clicksState = new ClicksState();
+
+  private AppMediator() {
+    counterState=new CounterState();
+    clicksState=new ClicksState();
   }
+
+  public static void resetInstance() {
+    INSTANCE = null;
+  }
+
+
+  public static AppMediator getInstance() {
+    if(INSTANCE == null){
+      INSTANCE = new AppMediator();
+    }
+
+    return INSTANCE;
+  }
+
 
   public CounterState getCounterState() {
     return counterState;

@@ -2,7 +2,9 @@ package es.ulpgc.eite.cleancode.clickcounter.counter;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.clickcounter.app.AppMediator;
 import es.ulpgc.eite.cleancode.clickcounter.app.ClicksToCounterState;
+import es.ulpgc.eite.cleancode.clickcounter.app.CounterToClicksState;
 
 public class CounterPresenter implements CounterContract.Presenter {
 
@@ -11,10 +13,12 @@ public class CounterPresenter implements CounterContract.Presenter {
   private WeakReference<CounterContract.View> view;
   private CounterState state;
   private CounterContract.Model model;
-  private CounterContract.Router router;
 
-  public CounterPresenter(CounterState state) {
-    this.state = state;
+  private AppMediator mediator;
+
+  public CounterPresenter(AppMediator mediator) {
+    this.mediator = mediator;
+    state = mediator.getCounterState();
   }
 
   @Override
@@ -41,7 +45,7 @@ public class CounterPresenter implements CounterContract.Presenter {
     // Log.e(TAG, "onResume()");
 
     // use passed state if is necessary
-    ClicksToCounterState savedState = router.getStateFromNextScreen();
+    ClicksToCounterState savedState = getStateFromNextScreen();
     if (savedState != null) {
 
       // update the model if is necessary
@@ -86,6 +90,14 @@ public class CounterPresenter implements CounterContract.Presenter {
     // Log.e(TAG, "onIncrementPressed()");
   }
 
+  private void passStateToNextScreen(CounterToClicksState state) {
+    mediator.setCounterNextScreenState(state);
+  }
+
+  private ClicksToCounterState getStateFromNextScreen() {
+    return mediator.getCounterNextScreenState();
+  }
+
   @Override
   public void injectView(WeakReference<CounterContract.View> view) {
     this.view = view;
@@ -96,8 +108,4 @@ public class CounterPresenter implements CounterContract.Presenter {
     this.model = model;
   }
 
-  @Override
-  public void injectRouter(CounterContract.Router router) {
-    this.router = router;
-  }
 }
