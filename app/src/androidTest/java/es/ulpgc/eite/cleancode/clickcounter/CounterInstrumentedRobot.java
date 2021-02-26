@@ -23,14 +23,13 @@ import static org.hamcrest.Matchers.not;
 public class CounterInstrumentedRobot {
 
 
-  private ActivityTestRule<CounterActivity> counterTestRule =
-      new ActivityTestRule<>(
-          CounterActivity.class,false, false);
+  private ActivityTestRule<CounterActivity> testRule =
+      new ActivityTestRule<>(CounterActivity.class,false, false);
 
 
 
   public void iniciamos_pantalla_COUNTER() {
-    counterTestRule.launchActivity(null);
+    testRule.launchActivity(null);
   }
 
 
@@ -92,49 +91,49 @@ public class CounterInstrumentedRobot {
   }
 
 
-  public void botón_INCREMENT_se_encuentra(boolean activado) {
+  public void boton_INCREMENT_se_encuentra(boolean activado) {
 
     onView(withId(R.id.btnIncrement))
         .check(matches(isDisplayed()))
         .check(matches(activado ? isEnabled() : not(isEnabled())));
   }
 
-  public void botón_RESET_se_encuentra(boolean activado) {
+  public void boton_RESET_se_encuentra(boolean activado) {
 
     onView(withId(R.id.btnReset))
         .check(matches(isDisplayed()))
         .check(matches(activado ? isEnabled() : not(isEnabled())));
   }
 
-  public void botón_CLICKS_se_encuentra(boolean activado) {
+  public void boton_CLICKS_se_encuentra(boolean activado) {
 
     onView(withId(R.id.btnClicks))
         .check(matches(isDisplayed()))
         .check(matches(activado ? isEnabled() : not(isEnabled())));
   }
 
-  public void botón_CLEAR_se_encuentra(boolean activado) {
+  public void boton_CLEAR_se_encuentra(boolean activado) {
 
     onView(withId(R.id.btnClear))
         .check(matches(isDisplayed()))
         .check(matches(activado ? isEnabled() : not(isEnabled())));
   }
 
-  public void hacemos_clic_en_botón_INCREMENT() {
+  public void hacemos_clic_en_boton_INCREMENT() {
     onView(withId(R.id.btnIncrement)).perform(click());
   }
 
-  public void hacemos_clic_en_botón_CLICKS() {
+  public void hacemos_clic_en_boton_CLICKS() {
     onView(withId(R.id.btnClicks)).perform(click());
   }
 
 
-  public void hacemos_clic_en_botón_CLEAR() {
+  public void hacemos_clic_en_boton_CLEAR() {
     onView(withId(R.id.btnClear)).perform(click());
   }
 
 
-  public void hacemos_clic_en_botón_RESET() {
+  public void hacemos_clic_en_boton_RESET() {
     onView(withId(R.id.btnReset)).perform(click());
   }
 
@@ -142,7 +141,7 @@ public class CounterInstrumentedRobot {
   public void rotamos_pantalla_COUNTER() {
     Context context = ApplicationProvider.getApplicationContext();
     int orientation = context.getResources().getConfiguration().orientation;
-    Activity activity = counterTestRule.getActivity();
+    Activity activity = testRule.getActivity();
 
     if(orientation  == Configuration.ORIENTATION_PORTRAIT) {
       activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
