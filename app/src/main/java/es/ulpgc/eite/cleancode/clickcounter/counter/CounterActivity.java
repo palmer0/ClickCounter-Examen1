@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.ulpgc.eite.cleancode.clickcounter.R;
+import es.ulpgc.eite.cleancode.clickcounter.app.AppMediator;
 import es.ulpgc.eite.cleancode.clickcounter.clicks.ClicksActivity;
 
 public class CounterActivity
@@ -22,6 +23,10 @@ public class CounterActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_counter);
     getSupportActionBar().setTitle(R.string.counter_title);
+
+    if (savedInstanceState == null) {
+      AppMediator.resetInstance();
+    }
 
     // do the setup
     CounterScreen.configure(this);
@@ -67,7 +72,7 @@ public class CounterActivity
   @Override
   public void navigateToNextScreen() {
     Intent intent = new Intent(this, ClicksActivity.class);
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);
   }
 
