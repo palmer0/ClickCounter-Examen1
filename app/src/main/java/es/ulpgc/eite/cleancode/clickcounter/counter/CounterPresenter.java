@@ -21,6 +21,7 @@ public class CounterPresenter implements CounterContract.Presenter {
     state = mediator.getCounterState();
   }
 
+
   @Override
   public void onStart() {
     // Log.e(TAG, "onStart()");
@@ -30,6 +31,21 @@ public class CounterPresenter implements CounterContract.Presenter {
       state = new CounterState();
     }
 
+    // call the model and update the state
+    state.data = model.getStoredData();
+
+    /*
+    // use passed state if is necessary
+    PreviousToCounterState savedState = getStateFromPreviousScreen();
+    if (savedState != null) {
+
+      // update the model if is necessary
+      model.onDataFromPreviousScreen(savedState.data);
+
+      // update the state if is necessary
+      state.data = savedState.data;
+    }
+    */
   }
 
   @Override
@@ -50,15 +66,19 @@ public class CounterPresenter implements CounterContract.Presenter {
 
       // update the model if is necessary
       model.onDataFromNextScreen(savedState.data);
+
+      // update the state if is necessary
+      state.data = savedState.data;
     }
 
     // call the model and update the state
-    state.data = model.getStoredData();
+    //state.data = model.getStoredData();
 
     // update the view
     view.get().onDataUpdated(state);
 
   }
+
 
   @Override
   public void onBackPressed() {
