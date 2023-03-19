@@ -9,7 +9,7 @@ public interface CounterContract {
     void injectPresenter(Presenter presenter);
 
     void navigateToNextScreen();
-    void onDataUpdated(CounterViewModel viewModel);
+    void refreshWithDataUpdated(CounterViewModel viewModel);
   }
 
   interface Presenter {
@@ -31,9 +31,9 @@ public interface CounterContract {
 
   interface Model {
     String getStoredData();
-    void onDataFromNextScreen(String data);
-    void onRestartScreen(String data);
-    void onDataFromPreviousScreen(String data);
+    void updateWithDataFromNextScreen(String data);
+    void updateOnRestartScreen(String data);
+    void updateWithDataFromPreviousScreen(String data);
   }
 
 }

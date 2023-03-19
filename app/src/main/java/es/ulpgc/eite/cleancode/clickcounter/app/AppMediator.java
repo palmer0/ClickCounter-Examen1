@@ -15,8 +15,8 @@ public class AppMediator {
 
 
   private AppMediator() {
-    counterState=new CounterState();
-    clicksState=new ClicksState();
+    //counterState=new CounterState();
+    //clicksState=new ClicksState();
   }
 
   public static void resetInstance() {
@@ -42,6 +42,13 @@ public class AppMediator {
     return clicksState;
   }
 
+  public void setCounterState(CounterState state) {
+    counterState=state;
+  }
+
+  public void setClicksState(ClicksState state) {
+    clicksState=state;
+  }
 
   public CounterToClicksState getClicksPreviousScreenState() {
     return counterToClicksState;

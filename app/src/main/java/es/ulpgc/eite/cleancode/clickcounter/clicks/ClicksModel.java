@@ -1,10 +1,9 @@
 package es.ulpgc.eite.cleancode.clickcounter.clicks;
 
-import android.util.Log;
-
 public class ClicksModel implements ClicksContract.Model {
 
-  public static String TAG = ClicksModel.class.getSimpleName();
+  //public static String TAG = ClicksModel.class.getSimpleName();
+  public static String TAG = "ClickCounter.ClicksModel";
 
   private String data;
 
@@ -19,17 +18,23 @@ public class ClicksModel implements ClicksContract.Model {
   }
 
   @Override
-  public void onRestartScreen(String data) {
-    // Log.e(TAG, "onRestartScreen()");
+  public void updateOnRestartScreen(String data) {
+    // Log.e(TAG, "updateOnRestartScreen()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
-  public void onDataFromNextScreen(String data) {
-    // Log.e(TAG, "onDataFromNextScreen()");
+  public void updateWithDataFromNextScreen(String data) {
+    // Log.e(TAG, "updateWithDataFromNextScreen()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
-  public void onDataFromPreviousScreen(String data) {
-    // Log.e(TAG, "onDataFromPreviousScreen()");
+  public void updateWithDataFromPreviousScreen(String data) {
+    // Log.e(TAG, "updateWithDataFromPreviousScreen()");
+
+    // TODO: add code if is necessary
   }
 }

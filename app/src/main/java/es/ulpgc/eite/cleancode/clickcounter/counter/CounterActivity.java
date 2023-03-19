@@ -14,7 +14,8 @@ import es.ulpgc.eite.cleancode.clickcounter.clicks.ClicksActivity;
 public class CounterActivity
     extends AppCompatActivity implements CounterContract.View {
 
-  public static String TAG = CounterActivity.class.getSimpleName();
+  //public static String TAG = CounterActivity.class.getSimpleName();
+  public static String TAG = "ClickCounter.CounterActivity";
 
   private CounterContract.Presenter presenter;
 
@@ -89,8 +90,8 @@ public class CounterActivity
   }
 
   @Override
-  public void onDataUpdated(CounterViewModel viewModel) {
-    //Log.e(TAG, "onDataUpdated()");
+  public void refreshWithDataUpdated(CounterViewModel viewModel) {
+    //Log.e(TAG, "refreshWithDataUpdated()");
 
     // deal with the data
     ((TextView) findViewById(R.id.tvCounter)).setText(viewModel.data);

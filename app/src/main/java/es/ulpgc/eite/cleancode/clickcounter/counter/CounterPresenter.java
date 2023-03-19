@@ -8,7 +8,8 @@ import es.ulpgc.eite.cleancode.clickcounter.app.CounterToClicksState;
 
 public class CounterPresenter implements CounterContract.Presenter {
 
-  public static String TAG = CounterPresenter.class.getSimpleName();
+  //public static String TAG = CounterPresenter.class.getSimpleName();
+  public static String TAG = "ClickCounter.CounterPresenter";
 
   private WeakReference<CounterContract.View> view;
   private CounterState state;
@@ -18,7 +19,6 @@ public class CounterPresenter implements CounterContract.Presenter {
 
   public CounterPresenter(AppMediator mediator) {
     this.mediator = mediator;
-    state = mediator.getCounterState();
   }
 
 
@@ -26,26 +26,11 @@ public class CounterPresenter implements CounterContract.Presenter {
   public void onStart() {
     // Log.e(TAG, "onStart()");
 
-    // initialize the state if is necessary
-    if (state == null) {
-      state = new CounterState();
-    }
+    // initialize the state
+    state = new CounterState();
 
-    // call the model and update the state
-    state.data = model.getStoredData();
+    // TODO: add code if is necessary
 
-    /*
-    // use passed state if is necessary
-    PreviousToCounterState savedState = getStateFromPreviousScreen();
-    if (savedState != null) {
-
-      // update the model if is necessary
-      model.onDataFromPreviousScreen(savedState.data);
-
-      // update the state if is necessary
-      state.data = savedState.data;
-    }
-    */
   }
 
   @Override
@@ -53,29 +38,17 @@ public class CounterPresenter implements CounterContract.Presenter {
     // Log.e(TAG, "onRestart()");
 
     // update the model if is necessary
-    model.onRestartScreen(state.data);
+    model.updateOnRestartScreen(state.data);
   }
 
   @Override
   public void onResume() {
     // Log.e(TAG, "onResume()");
 
-    // use passed state if is necessary
-    ClicksToCounterState savedState = getStateFromNextScreen();
-    if (savedState != null) {
-
-      // update the model if is necessary
-      model.onDataFromNextScreen(savedState.data);
-
-      // update the state if is necessary
-      state.data = savedState.data;
-    }
-
-    // call the model and update the state
-    //state.data = model.getStoredData();
+    // TODO: add code if is necessary
 
     // update the view
-    view.get().onDataUpdated(state);
+    view.get().refreshWithDataUpdated(state);
 
   }
 
@@ -83,11 +56,15 @@ public class CounterPresenter implements CounterContract.Presenter {
   @Override
   public void onBackPressed() {
     // Log.e(TAG, "onBackPressed()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
   public void onPause() {
     // Log.e(TAG, "onPause()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
@@ -98,16 +75,22 @@ public class CounterPresenter implements CounterContract.Presenter {
   @Override
   public void onClicksPressed() {
     // Log.e(TAG, "onClicksPressed()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
   public void onResetPressed() {
     // Log.e(TAG, "onResetPressed()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
   public void onIncrementPressed() {
     // Log.e(TAG, "onIncrementPressed()");
+
+    // TODO: add code if is necessary
   }
 
   private void passStateToNextScreen(CounterToClicksState state) {

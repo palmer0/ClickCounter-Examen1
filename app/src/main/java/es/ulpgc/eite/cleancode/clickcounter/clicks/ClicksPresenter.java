@@ -8,7 +8,8 @@ import es.ulpgc.eite.cleancode.clickcounter.app.CounterToClicksState;
 
 public class ClicksPresenter implements ClicksContract.Presenter {
 
-  public static String TAG = ClicksPresenter.class.getSimpleName();
+  //public static String TAG = ClicksPresenter.class.getSimpleName();
+  public static String TAG = "ClickCounter.ClicksPresenter";
 
   private WeakReference<ClicksContract.View> view;
   private ClicksState state;
@@ -17,7 +18,6 @@ public class ClicksPresenter implements ClicksContract.Presenter {
 
   public ClicksPresenter(AppMediator mediator) {
     this.mediator = mediator;
-    state = mediator.getClicksState();
   }
 
 
@@ -25,32 +25,18 @@ public class ClicksPresenter implements ClicksContract.Presenter {
   public void onStart() {
     // Log.e(TAG, "onStart()");
 
-    // initialize the state if is necessary
-    if (state == null) {
-      state = new ClicksState();
-    }
+    // initialize the state
+    state = new ClicksState();
 
-    // call the model and update the state
-    state.data = model.getStoredData();
+    // TODO: add code if is necessary
 
-    // use passed state if is necessary
-    CounterToClicksState savedState = getStateFromPreviousScreen();
-    if (savedState != null) {
-
-      // update the model if is necessary
-      model.onDataFromPreviousScreen(savedState.data);
-
-      // update the state if is necessary
-      state.data = savedState.data;
-    }
   }
 
   @Override
   public void onRestart() {
     // Log.e(TAG, "onRestart()");
 
-    // update the model if is necessary
-    model.onRestartScreen(state.data);
+    // TODO: add code if is necessary
   }
 
 
@@ -58,35 +44,25 @@ public class ClicksPresenter implements ClicksContract.Presenter {
   public void onResume() {
     // Log.e(TAG, "onResume()");
 
-    /*
-    // use passed state if is necessary
-    NextToClicksState savedState = getStateFromNextScreen();
-    if (savedState != null) {
-
-      // update the model if is necessary
-      model.onDataFromNextScreen(savedState.data);
-
-      // update the state if is necessary
-      state.data = savedState.data;
-    }
-    */
-
-    // call the model and update the state
-    //state.data = model.getStoredData();
+    // TODO: add code if is necessary
 
     // update the view
-    view.get().onDataUpdated(state);
+    view.get().refreshWithDataUpdated(state);
 
   }
 
   @Override
   public void onBackPressed() {
     // Log.e(TAG, "onBackPressed()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
   public void onPause() {
     // Log.e(TAG, "onPause()");
+
+    // TODO: add code if is necessary
   }
 
   @Override
@@ -97,6 +73,8 @@ public class ClicksPresenter implements ClicksContract.Presenter {
   @Override
   public void onClearPressed() {
     // Log.e(TAG, "onClearPressed()");
+
+    // TODO: add code if is necessary
   }
 
   private void passStateToPreviousScreen(ClicksToCounterState state) {
